@@ -1,0 +1,137 @@
+# Project Report — Phase 2 Evaluation
+
+---
+
+# 1. COVER PAGE
+
+* **Course name & ID:Data Structures in C (TCS 302)
+* **Project title:** Vehicle-to-Vehicle (V2V) Communication System Prototype
+* **Team name / Team #:Arcane
+* **Team lead / Members:**
+
+  * Om Sati (Backend & Integration) 
+  * ABhay Negi(Backend & Simulator) 
+  * Kshitij Kukreti (Frontend) 
+  * Ishaan Rai (Backend, API integration and Security)
+* **Date:** 08 Oct 2025
+
+---
+
+
+# 2. PROJECT ABSTRACT
+
+The Vehicle-to-Vehicle (V2V) Communication System prototype enables vehicles to share real-time telemetry and alerts to improve safety and traffic efficiency. The system consists of a backend node managing vehicle data and message routing, a simulator generating multi-vehicle telemetry, and a React + Tailwind frontend dashboard displaying vehicle positions and status. Currently, core components such as the vehicle model, routing logic, simulator feed, and dashboard integration are functional. Key pending tasks include spatial indexing, authentication, large-scale network handling, full map integration, WebSocket relay for real-time backend communication, and end-to-end testing. This prototype lays the foundation for demonstrating multi-vehicle V2V communication, with the remaining work aimed at completing full system integration, stress testing, and preparing a replayable demo.
+
+---
+
+# 3. UPDATED APPROACH & ARCHITECTURE
+
+**Architecture Overview:**
+
+* **Vehicle.sol (Backend Node):** Defines data structures and events for vehicle registration, location updates, and alerts, with logging for debugging.
+* **NetworkManager.sol (Backend Node):** Handles communication permissions and routing messages between vehicles.
+* **MockDataFeed / Simulator:** Generates configurable multi-vehicle telemetry streams and test scenarios for development and frontend integration.
+* **Frontend (React + Tailwind):** Dashboard UI with vehicle cards, status indicators, simulation controls, and a map placeholder to visualize vehicle positions.
+* **Tooling:** Hardhat (for backend compilation and local node testing), React + Tailwind for frontend, and deployment scripts for local demo.
+
+Mermaid Diagram:
+
+```mermaid
+flowchart LR
+  VehicleNode -->|sendTelemetry| NetworkManager
+  NetworkManager -->|broadcast| Simulator
+  Simulator -->|mockData| Frontend
+  Frontend -->|display| User
+```
+
+---
+
+# 4. TASKS COMPLETED / WORK DONE (~60% Completion)
+
+* **Backend Node:**
+
+  * Project repository and folder structure  
+  * Vehicle data model (vehicleID, position, speed, statusFlags) 
+  * Basic message routing & logging
+  * Local unit testing of vehicle updates 
+
+* **Simulator / MockDataFeed:**
+
+  * Multi-vehicle feed with configurable vehicle count 
+  * Predefined scenarios (highway congestion, intersection hazards) 
+  * Integration with frontend via WebSocket stub 
+
+* **Frontend (React + Tailwind):**
+
+  * Project setup and scaffold — Aman Kumar
+  * Dashboard UI with vehicle cards and status indicators 
+  * Map placeholder for vehicle positions 
+  * Integration with MockDataFeed ]
+
+* **Connections / API / Testing:**
+
+  * WebSocket stub for frontend updates 
+  * Unit & integration tests for message formats and dashboard updates 
+
+* **Deployment / Demo:**
+
+  * Local scripts to launch backend, simulator, and frontend 
+  * Small-scale demo scenarios (5–10 vehicles) 
+
+---
+
+# 5. PENDING WORK / TASKS TO COMPLETE
+
+1. Backend optimization: spatial indexing, authentication, and large-scale network handling.
+2. Simulator enhancement: realistic network conditions, higher vehicle count, and backend integration.
+3. Frontend improvements: map integration, real-time backend data, and UX/UI polish.
+4. Connections & API: WebSocket/MQTT relay, end-to-end testing, and message security checks.
+5. Deployment & demo: full-scale setup, replayable scenarios, and stress/performance testing.
+6. Automation & documentation: regression tests, scenario scripts, and final setup scripts for easy deployment.
+
+---
+
+# 6. PROJECT OVERVIEW
+
+The V2V Communication System project is currently around 60% complete, with substantial progress made across all core modules. The backend node has been implemented with vehicle data models, basic message routing, and logging functionality, allowing small-scale vehicle communication to be tested locally. The simulator (MockDataFeed) generates multiple vehicle telemetry streams and predefined traffic scenarios, providing realistic inputs for the frontend dashboard. The React + Tailwind dashboard displays vehicle cards, status indicators, and a map placeholder, integrated with the simulator via WebSocket stubs. While core components are functional, critical tasks remain, including spatial indexing for proximity-based routing, authentication, large-scale network handling, full map integration, real-time backend communication, end-to-end testing, and deployment. The next milestone focuses on completing system integration, validating multi-vehicle communication flows, and preparing a replayable demo for Phase‑3 evaluation.
+
+---
+
+# 7. TESTING & VALIDATION STATUS
+
+| Test Type            | Status      | Notes                                                                      |
+| -------------------- | ----------- | -------------------------------------------------------------------------- |
+| Unit tests           | PASS        | Vehicle data updates, routing logic, and simulator modules tested locally. |
+| Integration tests    | PASS        | MockDataFeed → frontend WebSocket updates validated.                       |
+| End-to-end tests     | IN PROGRESS | Full backend → simulator → frontend flow under development.                |
+| Performance & stress | PENDING     | Large-scale vehicle simulations and latency tests yet to be conducted.     |
+| Security checks      | PENDING     | Message authentication, integrity, and relay security tests pending.       |
+
+---
+
+# 8. DELIVERABLES PROGRESS
+
+* Backend Node: Partially done – core model and routing implemented; optimization pending.
+* Simulator: Partially done – multi-vehicle feed and scenarios ready; network realism pending.
+* Frontend: Partially done – dashboard and mock feed integrated; map & backend connection pending.
+* Connections/API: Partially done – WebSocket stub ready; full E2E pending.
+* Deployment/Demo: Partially done – local scripts and small demo ready; full deployment pending.
+* Documentation: Partially done – README prepared; setup scripts pending.
+
+---
+
+# 9. TEAM PERSPECTIVE & NEXT STEPS
+
+The team’s immediate focus is on completing backend optimization, integrating the simulator with the main node, finalizing map-based frontend visualization, and establishing full WebSocket/MQTT relays for real-time communication. Security checks, end-to-end multi-vehicle testing, and performance/stress evaluation are next priorities. The team will also prepare replayable demo scenarios to showcase the complete system for Phase‑3 evaluation. Collaboration will continue with clear module ownership to ensure each member contributes to the pending tasks and final deliverables.
+
+---
+
+# 10. OPTIONAL: MERMAID ARCHITECTURE DIAGRAM
+
+```mermaid
+flowchart LR
+  VehicleNode -->|sendTelemetry| NetworkManager
+  NetworkManager -->|broadcast| Simulator
+  Simulator -->|mockData| Frontend
+  Frontend -->|display| User
+```
