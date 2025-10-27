@@ -1,0 +1,13 @@
+body {
+    background: #0f172a;
+    color: #f8fafc;
+}
+.card {
+    border-radius: 10px;
+}
+.btn {
+    border-radius: 8px;
+}
+.table-dark th, .table-dark td {
+    vertical-align: middle;
+}
