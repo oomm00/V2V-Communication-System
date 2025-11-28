@@ -49,55 +49,7 @@ A real-time V2V communication system that enables vehicles to share hazard alert
 
 **Overall:** 100% Complete
 
-## 🚀 Quick Start
 
-### Prerequisites
-- Node.js 14+
-- Python 3.7+
-- npm or yarn
-
-### Complete Setup (4 Terminals)
-
-**Terminal 1: Start Blockchain**
-```bash
-cd v2v
-npx hardhat node
-```
-
-**Terminal 2: Deploy Contracts**
-```bash
-cd v2v
-npm run deploy
-```
-
-**Terminal 3: Start API Server**
-```bash
-cd v2v/node
-npm start
-```
-
-**Terminal 4: Start Simulator**
-```bash
-cd v2v/node/scripts
-python simulator.py
-```
-
-### Access the System
-
-- **API:** http://localhost:5000
-- **Blockchain Status:** http://localhost:5000/blockchain/status
-- **Alerts:** http://localhost:5000/alerts
-- **Dashboard:** http://localhost:5001 (optional)
-
-### Quick Test
-
-```bash
-# Check blockchain integration
-curl http://localhost:5000/blockchain/status
-
-# Run integration tests
-cd v2v
-npm run test:integration
 ```
 
 **See [INTEGRATED_QUICK_START.md](INTEGRATED_QUICK_START.md) for detailed instructions.**
@@ -132,137 +84,142 @@ v2v/
 └── README.md                  # This file
 ```
 
-## 📚 Documentation
+## Quick Start
 
-- **[BLOCKCHAIN_SETUP.md](BLOCKCHAIN_SETUP.md)** - Complete blockchain setup guide
-- **[PROJECT_AUDIT_REPORT.md](PROJECT_AUDIT_REPORT.md)** - Full 6-section audit
-- **[CRITICAL_TODOS.md](CRITICAL_TODOS.md)** - Priority tasks
-- **[APACHE_DEPLOYMENT_CHECKLIST.md](APACHE_DEPLOYMENT_CHECKLIST.md)** - Production deployment
-- **[TODO1_COMPLETION_REPORT.md](TODO1_COMPLETION_REPORT.md)** - Blockchain implementation details
+### Local Development
 
-## 🔧 Configuration
+**Windows:**
+```bash
+RUN-ALL.bat
+```
 
-### Environment Variables
+**Linux/Mac:**
+```bash
+chmod +x RUN-ALL.sh
+./RUN-ALL.sh
+```
 
-Create `.env` file in project root:
+Open http://localhost:5173
+
+### Production Deployment (SmarterASP.NET)
+
+1. Build frontend:
+```bash
+cd frontend
+npm run build
+```
+
+2. Upload `v2v-deploy/` folder contents (see `deploy-smarterasp.txt`)
+
+## Features
+
+- Real-time hazard alerts via Socket.IO
+- Interactive map visualization (Dehradun area)
+- ECDSA signature verification
+- Blockchain integration (Ethereum/Hardhat)
+- SQLite database storage
+- Modern React dashboard
+
+## Architecture
+
+```
+Frontend (React + Vite)
+    ↓ Socket.IO
+Backend (Node.js + Express)
+    ↓
+Database (SQLite) + Blockchain (Ethereum)
+```
+
+## Components
+
+- **Frontend**: React dashboard on port 5173
+- **Backend**: Node.js API on port 8082
+- **Blockchain**: Hardhat local node on port 8545
+- **Simulator**: Python script generating test alerts
+
+## Requirements
+
+- Node.js 18.x+
+- Python 3.x (optional, for simulator)
+- npm
+
+## Project Structure
+
+```
+v2v/
+├── frontend/          # React application
+├── node/              # Backend server
+├── contracts/         # Smart contracts
+├── scripts/           # Deployment scripts
+└── RUN-ALL.bat/sh     # Start everything
+```
+
+## Configuration
+
+**Backend** (`node/.env`):
+```
+PORT=8082
+NODE_ENV=development
+DATABASE_PATH=./db/v2v.db
+REQUIRE_SIGNATURES=false
+```
+
+**Frontend** (`frontend/.env`):
+```
+VITE_API_URL=http://127.0.0.1:8082
+```
+
+## API Endpoints
+
+- `GET /api/` - Server status
+- `GET /alerts` - List all alerts
+- `POST /alert` - Submit new alert
+- `GET /metrics` - System metrics
+- `GET /blockchain/status` - Blockchain info
+
+## Development
+
+Start individual components:
 
 ```bash
 # Blockchain
-BLOCKCHAIN_RPC_URL=http://localhost:8545
-VEHICLE_CONTRACT_ADDRESS=0x5FbDB...
-NETWORK_MANAGER_ADDRESS=0xe7f17...
+npx hardhat node
 
-# Node.js API
-PORT=5000
-NODE_ENV=development
-DATABASE_PATH=./node/db/v2v.db
+# Backend
+cd node && node server.js
 
 # Frontend
-VITE_API_URL=http://localhost:5000
+cd frontend && npm run dev
+
+# Simulator
+python node/scripts/simulator.py
 ```
 
-## 🧪 Testing
+## Testing
 
-### Blockchain Contracts
 ```bash
-cd v2v
-npm test
+# Integration test
+node test-integration.js
+
+# Signature verification
+node test-signatures.js
+
+# Map validation
+node test-map-validation.js
 ```
 
-Expected: **12 passing tests** ✅
+## Deployment Options
 
-### API Endpoints
-```bash
-# Get alerts
-curl http://localhost:5000/alerts
+- **Local**: `RUN-ALL.bat` or `RUN-ALL.sh`
+- **SmarterASP.NET**: See `deploy-smarterasp.txt`
+- **Production**: See `deployment/` folder
 
-# Get metrics
-curl http://localhost:5000/metrics
-```
+## Documentation
 
-## 📊 Smart Contracts
+- `deploy-smarterasp.txt` - SmarterASP.NET deployment guide
+- `BLOCKCHAIN_SETUP.md` - Blockchain configuration
+- `LOGGING_GUIDE.md` - Logging system details
 
-### Vehicle Contract
-- Register vehicles with unique IDs
-- Track real-time location and speed
-- Report hazards with confidence levels
-- Confirm and verify hazards
-- Manage vehicle status
+## License
 
-### NetworkManager Contract
-- Authorize nodes
-- Relay messages between nodes
-- Broadcast to all nodes
-- Track message delivery
-- Monitor node activity
-
-## 🔐 Security Features
-
-- ✅ ECDSA signature verification (stub - needs implementation)
-- ✅ Replay attack prevention
-- ✅ Rate limiting per vehicle
-- ✅ Blockchain immutability
-- ✅ Access control on contracts
-
-## 🚧 Known Issues & TODOs
-
-### Critical:
-- [ ] Implement real ECDSA signatures (currently stubs)
-- [ ] Integrate Web3.js with Node.js backend
-- [ ] Connect simulator to blockchain
-
-### High Priority:
-- [ ] Complete React frontend setup
-- [ ] Add map visualization (Leaflet)
-- [ ] Implement production logging
-
-### Medium Priority:
-- [ ] Migrate SQLite to PostgreSQL
-- [ ] Add rate limiting to API
-- [ ] Configure Apache for production
-
-See [CRITICAL_TODOS.md](CRITICAL_TODOS.md) for details.
-
-## 🎯 Next Steps
-
-1. **Integrate Web3 with Backend** (TODO 2)
-   ```bash
-   cd node
-   npm install web3 dotenv
-   ```
-
-2. **Update server.js** to interact with blockchain
-3. **Implement real ECDSA** signatures
-4. **Complete React frontend** configuration
-5. **Deploy to production** (see Apache checklist)
-
-## 📈 Development Roadmap
-
-- [x] Phase 1: Blockchain Contracts ✅
-- [ ] Phase 2: Web3 Integration (In Progress)
-- [ ] Phase 3: Security Implementation
-- [ ] Phase 4: Frontend Completion
-- [ ] Phase 5: Production Deployment
-
-## 🤝 Contributing
-
-1. Read the audit reports in the documentation
-2. Check [CRITICAL_TODOS.md](CRITICAL_TODOS.md) for priority tasks
-3. Follow the existing code structure
-4. Test thoroughly before committing
-
-## 📝 License
-
-MIT License - See LICENSE file for details
-
-## 🆘 Support
-
-- **Issues:** Check [PROJECT_AUDIT_REPORT.md](PROJECT_AUDIT_REPORT.md)
-- **Deployment:** See [APACHE_DEPLOYMENT_CHECKLIST.md](APACHE_DEPLOYMENT_CHECKLIST.md)
-- **Blockchain:** See [BLOCKCHAIN_SETUP.md](BLOCKCHAIN_SETUP.md)
-
----
-
-**Status:** ✅ Blockchain contracts complete | ⏳ Web3 integration pending
-
-**Last Updated:** November 11, 2025
+MIT
