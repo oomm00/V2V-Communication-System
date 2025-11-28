@@ -1,0 +1,217 @@
+{
+  "timestamp": "2025-11-11T13:25:36.028Z",
+  "summary": {
+    "total": 41,
+    "passed": 40,
+    "failed": 1,
+    "warnings": 0,
+    "successRate": "97.6%"
+  },
+  "tests": [
+    {
+      "name": "Dependency leaflet installed",
+      "passed": true,
+      "details": "Version: ^1.9.4"
+    },
+    {
+      "name": "Dependency react-leaflet installed",
+      "passed": true,
+      "details": "Version: ^4.2.1"
+    },
+    {
+      "name": "Import React",
+      "passed": true,
+      "details": "Found"
+    },
+    {
+      "name": "Import MapContainer",
+      "passed": true,
+      "details": "Found"
+    },
+    {
+      "name": "Import TileLayer",
+      "passed": true,
+      "details": "Found"
+    },
+    {
+      "name": "Import Marker",
+      "passed": true,
+      "details": "Found"
+    },
+    {
+      "name": "Import Popup",
+      "passed": true,
+      "details": "Found"
+    },
+    {
+      "name": "Import Leaflet CSS",
+      "passed": true,
+      "details": "Found"
+    },
+    {
+      "name": "Component accepts alerts prop",
+      "passed": true,
+      "details": "Props destructuring found"
+    },
+    {
+      "name": "Component wrapped with React.memo",
+      "passed": true,
+      "details": "Performance optimization applied"
+    },
+    {
+      "name": "Error handling for invalid data",
+      "passed": true,
+      "details": "Console warnings/errors present"
+    },
+    {
+      "name": "getMarkerIcon function exists",
+      "passed": true,
+      "details": "Icon generation function found"
+    },
+    {
+      "name": "Color mapping for accident",
+      "passed": true,
+      "details": "red (#ef4444)"
+    },
+    {
+      "name": "Color mapping for ice",
+      "passed": true,
+      "details": "blue (#3b82f6)"
+    },
+    {
+      "name": "Color mapping for debris",
+      "passed": true,
+      "details": "amber (#f59e0b)"
+    },
+    {
+      "name": "Color mapping for default",
+      "passed": true,
+      "details": "gray (#6b7280)"
+    },
+    {
+      "name": "validateCoordinates function exists",
+      "passed": true,
+      "details": "Coordinate validation function found"
+    },
+    {
+      "name": "Latitude range validation (-90 to 90)",
+      "passed": true,
+      "details": "Range check implemented"
+    },
+    {
+      "name": "Longitude range validation (-180 to 180)",
+      "passed": true,
+      "details": "Range check implemented"
+    },
+    {
+      "name": "MapComponent imported in Dashboard",
+      "passed": true,
+      "details": "Import statement found"
+    },
+    {
+      "name": "Leaflet CSS imported",
+      "passed": true,
+      "details": "CSS import found"
+    },
+    {
+      "name": "MapComponent rendered in Dashboard",
+      "passed": true,
+      "details": "Component usage found"
+    },
+    {
+      "name": "Alerts data passed to MapComponent",
+      "passed": true,
+      "details": "Props binding found"
+    },
+    {
+      "name": "Error boundary implemented",
+      "passed": true,
+      "details": "Error handling wrapper found"
+    },
+    {
+      "name": "Map error state handling",
+      "passed": true,
+      "details": "Error state management found"
+    },
+    {
+      "name": "Mobile height (h-[300px])",
+      "passed": true,
+      "details": "Responsive class found"
+    },
+    {
+      "name": "Tablet height (md:h-[400px])",
+      "passed": true,
+      "details": "Responsive class found"
+    },
+    {
+      "name": "Desktop height (lg:h-[500px])",
+      "passed": true,
+      "details": "Responsive class found"
+    },
+    {
+      "name": "Full width styling (w-full)",
+      "passed": true,
+      "details": "Width class found"
+    },
+    {
+      "name": "Popup component used",
+      "passed": true,
+      "details": "Popup wrapper found"
+    },
+    {
+      "name": "Popup displays Hazard type",
+      "passed": true,
+      "details": "Field reference found"
+    },
+    {
+      "name": "Popup displays Coordinates (latitude)",
+      "passed": true,
+      "details": "Field reference found"
+    },
+    {
+      "name": "Popup displays Coordinates (longitude)",
+      "passed": true,
+      "details": "Field reference found"
+    },
+    {
+      "name": "Popup displays Confidence level",
+      "passed": true,
+      "details": "Field reference found"
+    },
+    {
+      "name": "Popup displays Timestamp",
+      "passed": true,
+      "details": "Field reference found"
+    },
+    {
+      "name": "Coordinates formatted to 4 decimals",
+      "passed": true,
+      "details": "Formatting function found"
+    },
+    {
+      "name": "Confidence displayed as percentage",
+      "passed": true,
+      "details": "Percentage conversion found"
+    },
+    {
+      "name": "Alerts array validation",
+      "passed": true,
+      "details": "Array type check found"
+    },
+    {
+      "name": "Filter alerts with invalid coordinates",
+      "passed": false,
+      "details": "Filtering logic found"
+    },
+    {
+      "name": "Empty alerts array handling",
+      "passed": true,
+      "details": "Empty check found"
+    },
+    {
+      "name": "Optional chaining for safety",
+      "passed": true,
+      "details": "Optional chaining operators found"
+    }
+  ]
+}

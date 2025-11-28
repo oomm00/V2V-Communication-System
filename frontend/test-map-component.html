@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map Component Manual Testing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-item {
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 4px solid #ddd;
+            background: #f9f9f9;
+        }
+        .test-item.pass {
+            border-left-color: #10b981;
+            background: #f0fdf4;
+        }
+        .test-item.fail {
+            border-left-color: #ef4444;
+            background: #fef2f2;
+        }
+        .test-item.pending {
+            border-left-color: #f59e0b;
+            background: #fffbeb;
+        }
+        .status {
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        .status.pass { background: #10b981; color: white; }
+        .status.fail { background: #ef4444; color: white; }
+        .status.pending { background: #f59e0b; color: white; }
+        button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+        }
+        button:hover {
+            background: #2563eb;
+        }
+        button:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+        .instructions {
+            background: #eff6ff;
+            border: 1px solid #3b82f6;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+        .summary {
+            background: #f0f9ff;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+            font-size: 18px;
+        }
+        .iframe-container {
+            width: 100%;
+            height: 600px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🗺️ Map Component Manual Testing Suite</h1>
+    
+    <div class="instructions">
+        <h3>📋 Testing Instructions</h3>
+        <ol>
+            <li>Ensure the backend server is running on <code>http://localhost:5000</code></li>
+            <li>Ensure the frontend dev server is running on <code>http://localhost:5173</code></li>
+            <li>Click "Open Dashboard" to view the application in the iframe below</li>
+            <li>Follow each test case and mark as Pass/Fail based on your observations</li>
+            <li>Review the summary at the end</li>
+        </ol>
+    </div>
+
+    <div style="text-align: center; margin: 20px 0;">
+        <button onclick="openDashboard()">🚀 Open Dashboard</button>
+        <button onclick="resetTests()">🔄 Reset All Tests</button>
+        <button onclick="exportResults()">📥 Export Results</button>
+    </div>
+
+    <div id="iframe-wrapper" style="display: none;">
+        <h2>Dashboard Preview</h2>
+        <iframe id="dashboard-iframe" class="iframe-container" src=""></iframe>
+    </div>
+
+    <div class="summary" id="summary">
+        <strong>Test Progress:</strong> <span id="progress">0/10 tests completed</span>
+    </div>
+
+    <div class="test-section">
+        <h2>1️⃣ Map Loading and Tiles</h2>
+        <div class="test-item pending" id="test-1">
+            <strong>Test 1.1: Map loads with OpenStreetMap tiles</strong>
+            <p>✓ Verify the map container renders</p>
+            <p>✓ Verify OpenStreetMap tiles are visible</p>
+            <p>✓ Verify map attribution is present</p>
+            <p><em>Requirement: 1.1, 1.3</em></p>
+            <div>
+                <button onclick="markTest('test-1', 'pass')">✅ Pass</button>
+                <button onclick="markTest('test-1', 'fail')">❌ Fail</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>2️⃣ Marker Display and Coordinates</h2>
+        <div class="test-item pending" id="test-2">
+            <strong>Test 2.1: Markers appear at correct coordinates</strong>
+            <p>✓ Verify markers are displayed on the map</p>
+            <p>✓ Verify marker positions match alert coordinates</p>
+            <p>✓ Verify multiple markers are visible if multiple alerts exist</p>
+            <p><em>Requirement: 1.2</em></p>
+            <div>
+                <button onclick="markTest('test-2', 'pass')">✅ Pass</button>
+                <button onclick="markTest('test-2', 'fail')">❌ Fail</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>3️⃣ Popup Information</h2>
+        <div class="test-item pending" id="test-3">
+            <strong>Test 3.1: Popup displays correct information</strong>
+            <p>✓ Click on a marker to open popup</p>
+            <p>✓ Verify hazard type is displayed</p>
+            <p>✓ Verify coordinates are displayed (4 decimal places)</p>
+            <p>✓ Verify confidence level is displayed as percentage</p>
+            <p>✓ Verify timestamp is displayed in readable format</p>
+            <p><em>Requirement: 2.1, 2.2, 2.3, 2.4, 2.5</em></p>
+            <div>
+                <button onclick="markTest('test-3', 'pass')">✅ Pass</button>
+                <button onclick="markTest('test-3', 'fail')">❌ Fail</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>4️⃣ Color-Coded Markers</h2>
+        <div class="test-item pending" id="test-4">
+            <strong>Test 4.1: Different hazard types show different colors</strong>
+            <p>✓ Accident markers are RED (#ef4444)</p>
+            <p>✓ Ice markers are BLUE (#3b82f6)</p>
+            <p>✓ Debris markers are AMBER (#f59e0b)</p>
+            <p>✓ Unknown types show GRAY (#6b7280)</p>
+            <p><em>Requirement: 3.1, 3.2, 3.3, 3.4, 3.5</em></p>
+            <div>
+                <button onclick="markTest('test-4', 'pass')">✅ Pass</button>
+                <button onclick="markTest('test-4', 'fail')">❌ Fail</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>5️⃣ Empty Alerts Handling</h2>
+        <div class="test-item pending" id="test-5">
+            <strong>Test 5.1: Map handles empty alerts array</strong>
+            <p>✓ Stop the simulator if running</p>
+            <p>✓ Wait for alerts to clear or refresh page before simulator starts</p>
+            <p>✓ Verify map displays without errors</p>
+            <p>✓ Verify no markers are shown</p>
+            <p>✓ Check browser console for no errors</p>
+            <p><em>Requirement: 5.1</em></p>
+            <div>
+                <button onclick="markTest('test-5', 'pass')">✅ Pass</button>
+                <button onclick="markTest('test-5', 'fail')">❌ Fail</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>6️⃣ Invalid Coordinates Handling</h2>
+        <div class="test-item pending" id="test-6">
+            <strong>Test 6.1: Map handles invalid coordinates gracefully</strong>
+            <p>✓ Open browser console (F12)</p>
+            <p>✓ Look for console warnings about invalid coordinates (if any)</p>
+            <p>✓ Verify map doesn't crash with invalid data</p>
+            <p>✓ Verify only valid markers are displayed</p>
+            <p><em>Requirement: 5.2</em></p>
+            <div>
+                <button onclick="markTest('test-6', 'pass')">✅ Pass</button>
+                <button onclick="markTest('test-6', 'fail')">❌ Fail</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>7️⃣ Zoom and Pan Controls</h2>
+        <div class="test-item pending" id="test-7">
+            <strong>Test 7.1: Map zoom and pan controls work</strong>
+            <p>✓ Click zoom in (+) button - map should zoom in</p>
+            <p>✓ Click zoom out (-) button - map should zoom out</p>
+            <p>✓ Use mouse wheel to zoom - should work</p>
+            <p>✓ Click and drag map - should pan</p>
+            <p>✓ Verify zoom level changes smoothly</p>
+            <p><em>Requirement: 1.5</em></p>
+            <div>
+                <button onclick="markTest('test-7', 'pass')">✅ Pass</button>
+                <button onclick="markTest('test-7', 'fail')">❌ Fail</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>8️⃣ Automatic Updates</h2>
+        <div class="test-item pending" id="test-8">
+            <strong>Test 8.1: Map updates when alerts change</strong>
+            <p>✓ Start the simulator to generate new alerts</p>
+            <p>✓ Wait 5-10 seconds (polling interval)</p>
+            <p>✓ Verify new markers appear automatically</p>
+            <p>✓ Verify map maintains zoom level during update</p>
+            <p>✓ Verify map maintains center position during update</p>
+            <p><em>Requirement: 4.1, 4.2, 4.3</em></p>
+            <div>
+                <button onclick="markTest('test-8', 'pass')">✅ Pass</button>
+                <button onclick="markTest('test-8', 'fail')">❌ Fail</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>9️⃣ Responsive Behavior</h2>
+        <div class="test-item pending" id="test-9">
+            <strong>Test 9.1: Map is responsive on different screen sizes</strong>
+            <p>✓ Resize browser window to mobile size (&lt;640px) - height should be ~300px</p>
+            <p>✓ Resize to tablet size (640-1024px) - height should be ~400px</p>
+            <p>✓ Resize to desktop size (&gt;1024px) - height should be ~500px</p>
+            <p>✓ Verify map width is always 100% of container</p>
+            <p>✓ Verify map controls remain accessible at all sizes</p>
+            <p><em>Requirement: 5.5</em></p>
+            <div>
+                <button onclick="markTest('test-9', 'pass')">✅ Pass</button>
+                <button onclick="markTest('test-9', 'fail')">❌ Fail</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>🔟 Error Handling</h2>
+        <div class="test-item pending" id="test-10">
+            <strong>Test 10.1: Error boundary works correctly</strong>
+            <p>✓ Check browser console for any errors</p>
+            <p>✓ Verify no React errors are thrown</p>
+            <p>✓ Verify Leaflet CSS is loaded (map controls are styled)</p>
+            <p>✓ Verify error boundary shows fallback UI if map fails</p>
+            <p><em>Requirement: 5.3, 5.4</em></p>
+            <div>
+                <button onclick="markTest('test-10', 'pass')">✅ Pass</button>
+                <button onclick="markTest('test-10', 'fail')">❌ Fail</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="summary" id="final-summary" style="display: none;">
+        <h2>📊 Final Test Summary</h2>
+        <p><strong>Total Tests:</strong> <span id="total-tests">10</span></p>
+        <p><strong>Passed:</strong> <span id="passed-tests" style="color: #10b981;">0</span></p>
+        <p><strong>Failed:</strong> <span id="failed-tests" style="color: #ef4444;">0</span></p>
+        <p><strong>Pending:</strong> <span id="pending-tests" style="color: #f59e0b;">10</span></p>
+        <p><strong>Success Rate:</strong> <span id="success-rate">0%</span></p>
+    </div>
+
+    <script>
+        const testResults = {};
+        const totalTests = 10;
+
+        function openDashboard() {
+            const iframe = document.getElementById('dashboard-iframe');
+            const wrapper = document.getElementById('iframe-wrapper');
+            iframe.src = 'http://localhost:5173';
+            wrapper.style.display = 'block';
+            iframe.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function markTest(testId, status) {
+            const testElement = document.getElementById(testId);
+            testElement.className = `test-item ${status}`;
+            testResults[testId] = status;
+            
+            // Add status badge
+            let statusBadge = testElement.querySelector('.status');
+            if (!statusBadge) {
+                statusBadge = document.createElement('span');
+                statusBadge.className = 'status';
+                testElement.insertBefore(statusBadge, testElement.firstChild);
+            }
+            statusBadge.className = `status ${status}`;
+            statusBadge.textContent = status === 'pass' ? '✅ PASS' : '❌ FAIL';
+            
+            updateSummary();
+        }
+
+        function updateSummary() {
+            const completed = Object.keys(testResults).length;
+            const passed = Object.values(testResults).filter(r => r === 'pass').length;
+            const failed = Object.values(testResults).filter(r => r === 'fail').length;
+            const pending = totalTests - completed;
+            
+            document.getElementById('progress').textContent = `${completed}/${totalTests} tests completed`;
+            
+            if (completed === totalTests) {
+                const finalSummary = document.getElementById('final-summary');
+                finalSummary.style.display = 'block';
+                document.getElementById('passed-tests').textContent = passed;
+                document.getElementById('failed-tests').textContent = failed;
+                document.getElementById('pending-tests').textContent = pending;
+                document.getElementById('success-rate').textContent = 
+                    `${Math.round((passed / totalTests) * 100)}%`;
+                finalSummary.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function resetTests() {
+            if (confirm('Are you sure you want to reset all test results?')) {
+                Object.keys(testResults).forEach(key => delete testResults[key]);
+                for (let i = 1; i <= totalTests; i++) {
+                    const testElement = document.getElementById(`test-${i}`);
+                    testElement.className = 'test-item pending';
+                    const statusBadge = testElement.querySelector('.status');
+                    if (statusBadge) statusBadge.remove();
+                }
+                document.getElementById('final-summary').style.display = 'none';
+                updateSummary();
+            }
+        }
+
+        function exportResults() {
+            const results = {
+                timestamp: new Date().toISOString(),
+                totalTests: totalTests,
+                completed: Object.keys(testResults).length,
+                passed: Object.values(testResults).filter(r => r === 'pass').length,
+                failed: Object.values(testResults).filter(r => r === 'fail').length,
+                details: testResults
+            };
+            
+            const blob = new Blob([JSON.stringify(results, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `map-component-test-results-${Date.now()}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Initialize
+        updateSummary();
+    </script>
+</body>
+</html>

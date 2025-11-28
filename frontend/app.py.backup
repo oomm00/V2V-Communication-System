@@ -1,0 +1,3 @@
+# Flask app backed up - React is now the primary frontend
+# This file is kept for reference only
+# To use React frontend: cd frontend && npm run dev

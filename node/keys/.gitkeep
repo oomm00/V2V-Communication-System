@@ -1,0 +1,2 @@
+# This file ensures the keys directory is tracked by git
+# Actual key files will be ignored by .gitignore

@@ -1,0 +1,30 @@
+# IISNode configuration for V2V System
+
+# Node.js settings
+node_env: production
+nodeProcessCommandLine: node
+
+# Logging
+loggingEnabled: true
+logDirectory: iisnode
+
+# Process management
+maxConcurrentRequestsPerProcess: 1024
+maxNamedPipeConnectionRetry: 100
+namedPipeConnectionRetryDelay: 250
+
+# Request handling
+maxRequestLength: 65536
+watchedFiles: *.js;*.json;iisnode.yml
+
+# Development settings (disable in production)
+devErrorsEnabled: false
+debuggingEnabled: false
+
+# Performance
+flushResponse: false
+enableXFF: true
+
+# Process recycling
+maxProcessCountPerApplication: 1
+maxConcurrentRequestsPerProcess: 1024
